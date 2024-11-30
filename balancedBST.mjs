@@ -1,6 +1,6 @@
 // javascript program to generate a balanced binary search tree from an array;
 
-import { prettyPrint } from "./formattedBStint.js";
+import { prettyPrint } from "./formattedBinaryTree.js";
 import { sortArray } from "./sortArray.js";
 
 class Node {
@@ -58,8 +58,6 @@ function removeRedundancy(arr) {
 
   return arrayWithNoRedundantElement;
 }
-
-
 
 let array1 = [1, 9, 4, 5, 10, 11, 13];
 console.log(array1);

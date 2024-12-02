@@ -1,7 +1,7 @@
 // javascript program to generate a balanced binary search tree from an array;
 
 import { buildTree } from "./buildTree.js";
-import { prettyPrint } from "./formattedBinaryTree.js";
+import { prettyPrint } from "./utilityFunctions.js";
 
 class Node {
   constructor(data) {
@@ -47,6 +47,15 @@ class Tree {
     };
 
     return insertNode(this.root);
+  }
+
+  delete(value) {
+    // if the tree is empty, do nothing
+    if(this.root === null) {
+      return;
+    }
+
+
   }
 }
 

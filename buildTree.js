@@ -1,4 +1,4 @@
-import { sortArray } from "./sortArray.js";
+import { sortArray } from "./utilityFunctions.js";
 
 class Node {
   constructor(data) {

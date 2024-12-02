@@ -139,6 +139,36 @@ function postOrderTraversal(node, callback) {
   callback(node);
 }
 
+function findHeight(node) {
+  //base case literally, if there are no children i.e if the node is a leaf height = 0
+  if (node.right === null && node.left === null) return 0;
+  let leftHeight = 0,
+    rightHeight = 0;
+  if (node.right) {
+    rightHeight = 1 + findHeight(node.right);
+  }
+  if (node.left) {
+    leftHeight = 1 + findHeight(node.left);
+  }
+
+  return rightHeight > leftHeight ? rightHeight : leftHeight;
+}
+
+function findDepth(rootNode, nodeValue) {
+  if (rootNode == null) {
+    return null;
+  }
+
+  if (rootNode.data < nodeValue) {
+    return 1 + findDepth(rootNode.right, nodeValue);
+  } else if (rootNode.data > nodeValue) {
+    return 1 + findDepth(rootNode.left, nodeValue);
+  } else {
+    return 0;
+  }
+}
+
+
 export {
   buildTree,
   insertNode,
@@ -147,4 +177,6 @@ export {
   inOrderTraversal,
   preOrderTraversal,
   postOrderTraversal,
+  findHeight,
+  findDepth,
 };

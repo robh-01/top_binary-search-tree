@@ -143,20 +143,22 @@ class Tree {
   }
 }
 
-let arr1 = [1, 4, 2, 3, 5, 5, 2, 6, 9, 18];
-console.log(sortArray(removeRedundancy(arr1)));
+export { Tree };
 
-let tree1 = new Tree(arr1);
-console.log(prettyPrint(tree1.root));
+// let arr1 = [1, 4, 2, 3, 5, 5, 2, 6, 9, 18];
+// console.log(sortArray(removeRedundancy(arr1)));
 
-tree1.insert(20);
+// let tree1 = new Tree(arr1);
+// console.log(prettyPrint(tree1.root));
 
-console.log("before balancing");
-console.log(tree1.isBalanced());
-console.log(prettyPrint(tree1.root));
+// tree1.insert(20);
 
-console.log(tree1.rebalance());
+// console.log("before balancing");
+// console.log(tree1.isBalanced());
+// console.log(prettyPrint(tree1.root));
 
-console.log("After Balancing");
-console.log(tree1.isBalanced());
-console.log(prettyPrint(tree1.root));
+// console.log(tree1.rebalance());
+
+// console.log("After Balancing");
+// console.log(tree1.isBalanced());
+// console.log(prettyPrint(tree1.root));

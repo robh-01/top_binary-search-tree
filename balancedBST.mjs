@@ -1,7 +1,7 @@
 // javascript program to generate a balanced binary search tree from an array;
 
+import { buildTree } from "./buildTree.js";
 import { prettyPrint } from "./formattedBinaryTree.js";
-import { sortArray } from "./sortArray.js";
 
 class Node {
   constructor(data) {
@@ -50,47 +50,9 @@ class Tree {
   }
 }
 
-//function that creates a balanced binary search tree from an unsorted/sorted array removing redundant elements.
-function buildTree(arr) {
-  //remove redundancy and sort the array in ascending order
-  const sortedArray = sortArray(removeRedundancy(arr));
-  return sortedArrayToBST(sortedArray, 0, sortedArray.length - 1);
-}
+let tree1 = new Tree([1, 4, 2, 3, 5, 5, 2, 6, 9, 18]);
+console.log(prettyPrint(tree1.root));
 
-function sortedArrayToBST(arr, start, end) {
-  if (start > end) return null;
-
-  // Find the middle element
-  let mid = start + Math.floor((end - start) / 2);
-
-  // Create root node
-  let root = new Node(arr[mid]);
-
-  // Create left subtree
-  root.left = sortedArrayToBST(arr, start, mid - 1);
-
-  // Create right subtree
-  root.right = sortedArrayToBST(arr, mid + 1, end);
-
-  return root;
-}
-
-// function that removes redundancy for the array
-// and returns the array with no redundant elements
-function removeRedundancy(arr) {
-  const seen = {}; // an object to track seen elements
-  const arrayWithNoRedundantElement = []; // Final result array
-
-  for (let i = 0; i < arr.length; i++) {
-    if (!seen[arr[i]]) {
-      // Check if the element is not already tracked
-      seen[arr[i]] = true; // Mark it as seen
-      arrayWithNoRedundantElement.push(arr[i]); // Add to the result array
-    }
-  }
-
-  return arrayWithNoRedundantElement;
-}
-
-
-
+tree1.insert(20);
+tree1.insert(-1);
+console.log(prettyPrint(tree1.root));

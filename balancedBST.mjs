@@ -1,6 +1,6 @@
 // javascript program to generate a balanced binary search tree from an array;
 
-import { buildTree } from "./buildTree.js";
+import { buildTree } from "./bstOperations.js/index.js";
 import { prettyPrint } from "./utilityFunctions.js";
 
 class Node {

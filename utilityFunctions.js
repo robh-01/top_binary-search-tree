@@ -62,4 +62,21 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-export { sortArray, prettyPrint };
+// function that removes redundancy for the array
+// and returns the array with no redundant elements
+function removeRedundancy(arr) {
+  const seen = {}; // an object to track seen elements
+  const arrayWithNoRedundantElement = []; // Final result array
+
+  for (let i = 0; i < arr.length; i++) {
+    if (!seen[arr[i]]) {
+      // Check if the element is not already tracked
+      seen[arr[i]] = true; // Mark it as seen
+      arrayWithNoRedundantElement.push(arr[i]); // Add to the result array
+    }
+  }
+
+  return arrayWithNoRedundantElement;
+}
+
+export { sortArray, prettyPrint, removeRedundancy };

@@ -37,7 +37,7 @@ function sortedArrayToBST(arr, start, end) {
 // in this function the root node should be checked beforeHand if it is empty or not)
 function insertNode(node, value) {
   //duplicate not allowed
-  if (node.value == value) {
+  if (node.data == value) {
     return node;
   }
 
@@ -57,4 +57,94 @@ function insertNode(node, value) {
   return node;
 }
 
-export { buildTree, insertNode };
+//function that deletes the given value/key/node from the given root node.
+//first arg is the is the root node to from which the key(second argument is to be deleted)
+function deleteNode(rootNode, value) {
+  //base case
+  if (rootNode === null) {
+    return rootNode;
+  }
+
+  // If the value/key to be deleted is in
+  // one of the subtree
+  if (rootNode.data > value) {
+    rootNode.left = deleteNode(rootNode.left, value);
+  } else if (rootNode.data < value) {
+    rootNode.right = deleteNode(rootNode.right, value);
+  } else {
+    //If the rootNode matches with the key
+
+    // cases when rootNode has 0 or only one children
+    //only right child
+    if (rootNode.left === null) {
+      return rootNode.right;
+    }
+
+    //only left child
+    if (rootNode.right === null) {
+      return rootNode.left;
+    }
+
+    //when both children are present
+    let successorNode = getSuccessor(rootNode);
+    rootNode.data = successorNode.data;
+    rootNode.right = deleteNode(rootNode.right, successorNode.data);
+  }
+
+  return rootNode;
+}
+
+// Note that it is not a generic inorder successor
+// function. It mainly works when the right child
+// is not empty, which is  the case we need in BST
+// delete.
+function getSuccessor(curr) {
+  curr = curr.right;
+  while (curr !== null && curr.left !== null) {
+    curr = curr.left;
+  }
+  return curr;
+}
+
+// function that returns the node with the passed value
+function findNode(rootNode, value) {
+  if (rootNode == null) {
+    return null;
+  }
+
+  if (rootNode.data < value) {
+    return findNode(rootNode.right, value);
+  } else if (rootNode.data > value) {
+    return findNode(rootNode.left, value);
+  } else {
+    return rootNode;
+  }
+}
+
+function preOrderTraversal(node, callback) {
+  callback(node);
+  if (node.left) preOrderTraversal(node.left, callback);
+  if (node.right) preOrderTraversal(node.right, callback);
+}
+
+function inOrderTraversal(node, callback) {
+  if (node.left) inOrderTraversal(node.left, callback);
+  callback(node);
+  if (node.right) inOrderTraversal(node.right, callback);
+}
+
+function postOrderTraversal(node, callback) {
+  if (node.left) postOrderTraversal(node.left, callback);
+  if (node.right) postOrderTraversal(node.right, callback);
+  callback(node);
+}
+
+export {
+  buildTree,
+  insertNode,
+  deleteNode,
+  findNode,
+  inOrderTraversal,
+  preOrderTraversal,
+  postOrderTraversal,
+};

@@ -1,6 +1,6 @@
 // javascript program to generate a balanced binary search tree from an array;
 
-import { buildTree } from "./bstOperations.js/index.js";
+import { buildTree, insertNode } from "./bstOperations.js";
 import { prettyPrint } from "./utilityFunctions.js";
 
 class Node {
@@ -23,39 +23,15 @@ class Tree {
       return this.root;
     }
 
-    //Helper function to recursively insert
-    const insertNode = (node) => {
-      //duplicate not allowed
-      if (node.value == value) {
-        return node;
-      }
-
-      if (value < node.data) {
-        if (node.left == null) {
-          node.left = new Node(value);
-        } else {
-          insertNode(node.left);
-        }
-      } else if (value > node.data) {
-        if (node.right == null) {
-          node.right = new Node(value);
-        } else {
-          insertNode(node.right);
-        }
-      }
-      return node;
-    };
-
-    return insertNode(this.root);
+    return insertNode(this.root, value);
   }
 
   delete(value) {
     // if the tree is empty, do nothing
-    if(this.root === null) {
-      return;
-    }
-
-
+    // if (this.root === null) {
+    //   return null;
+    // }
+    // delNode(this.root, value);
   }
 }
 

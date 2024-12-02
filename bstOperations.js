@@ -33,4 +33,28 @@ function sortedArrayToBST(arr, start, end) {
   return root;
 }
 
-export { buildTree };
+//function to insert the value to the given node (when passed root node of a tree as 'node' argument
+// in this function the root node should be checked beforeHand if it is empty or not)
+function insertNode(node, value) {
+  //duplicate not allowed
+  if (node.value == value) {
+    return node;
+  }
+
+  if (value < node.data) {
+    if (node.left == null) {
+      node.left = new Node(value);
+    } else {
+      insertNode(node.left, value);
+    }
+  } else if (value > node.data) {
+    if (node.right == null) {
+      node.right = new Node(value);
+    } else {
+      insertNode(node.right, value);
+    }
+  }
+  return node;
+}
+
+export { buildTree, insertNode };

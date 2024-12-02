@@ -15,6 +15,39 @@ class Tree {
   constructor(arr) {
     this.root = buildTree(arr);
   }
+
+  insert(value) {
+    //if the tree is empty, create a new node.
+    if (this.root == null) {
+      this.root = new Node(value);
+      return this.root;
+    }
+
+    //Helper function to recursively insert
+    const insertNode = (node) => {
+      //duplicate not allowed
+      if (node.value == value) {
+        return node;
+      }
+
+      if (value < node.data) {
+        if (node.left == null) {
+          node.left = new Node(value);
+        } else {
+          insertNode(node.left);
+        }
+      } else if (value > node.data) {
+        if (node.right == null) {
+          node.right = new Node(value);
+        } else {
+          insertNode(node.right);
+        }
+      }
+      return node;
+    };
+
+    return insertNode(this.root);
+  }
 }
 
 //function that creates a balanced binary search tree from an unsorted/sorted array removing redundant elements.
@@ -59,7 +92,5 @@ function removeRedundancy(arr) {
   return arrayWithNoRedundantElement;
 }
 
-let array1 = [1, 9, 4, 5, 10, 11, 13];
-console.log(array1);
-console.log(sortArray(array1));
-prettyPrint(buildTree(array1));
+
+
